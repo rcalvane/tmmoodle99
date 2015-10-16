@@ -18,16 +18,15 @@ angular.module('mm.core.login', [])
 
     $stateProvider
 
-    .state('mm_login', {
-        url: '/mm_login',
-        abstract: true,
-        templateUrl: 'core/components/login/templates/base.html',
-        cache: false,   // Disable caching to force controller reload.
-        onEnter: function($ionicHistory) {
-            // Ensure that there is no history stack when getting here.
-            $ionicHistory.clearHistory();
-        }
-    })
+    .state('mm_login.site', { 
+    url: '/site', 
+    templateUrl: 'core/components/login/templates/site.html',
+    controller: 'mmLoginSiteCtrl',
+    onEnter: function($state) {
+        $state.go('mm_login.credentials', {siteurl: 'http://taramandala.net'});
+    }
+})
+
 
     .state('mm_login.init', {
         url: '/init',
